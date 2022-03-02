@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { BsCalendarCheck } from "react-icons/bs";
 
 const TodoHeadBlock = styled.div`
   padding-top: 48px;
@@ -41,7 +42,7 @@ function TodoHead() {
   const dayName = today.toLocaleDateString("ko-KR", { weekday: "long" });
   return (
     <TodoHeadBlock>
-      <h1>{dateString}</h1>
+      <h1>{dateString}</h1> <BsCalendarCheck />
       <div className="day">{dayName}</div>
       <div className="tasks-left">할 일 {undoneTasks.length}개 남음</div>
     </TodoHeadBlock>

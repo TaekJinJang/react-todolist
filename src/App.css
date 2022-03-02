@@ -1,0 +1,25 @@
+.f_con {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 50%;
+  height: 50px;
+  padding-top: 8px;
+}
+.footer_bar {
+  display: flex;
+  max-width: 500px;
+  margin: 23px auto 0;
+  float: none;
+  overflow: hidden;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  position: relative;
+  overflow: visible;
+}
+.home {
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
+}
+.img-width {
+  height: 250px;
+}
