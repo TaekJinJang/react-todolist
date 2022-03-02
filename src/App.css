@@ -6,12 +6,14 @@
   height: 50px;
   padding-top: 8px;
 }
+.menus {
+  display: flex;
+  justify-content: center;
+}
 .footer_bar {
   display: flex;
-  max-width: 500px;
+  min-width: 500px;
   margin: 23px auto 0;
-  float: none;
-  overflow: hidden;
   border-top: 1px solid rgba(0, 0, 0, 0.2);
   box-sizing: border-box;
   position: relative;
