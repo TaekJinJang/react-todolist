@@ -1,6 +1,7 @@
-import React from 'react';
-import styled, { css } from 'styled-components';
-import { MdDone, MdDelete } from 'react-icons/md';
+import React from "react";
+import styled, { css } from "styled-components";
+import { MdDone, MdDelete } from "react-icons/md";
+import { useDispatch, useSelector } from "react-redux";
 
 const Remove = styled.div`
   display: flex;
@@ -38,7 +39,7 @@ const CheckCircle = styled.div`
   justify-content: center;
   margin-right: 20px;
   cursor: pointer;
-  ${props =>
+  ${(props) =>
     props.done &&
     css`
       border: 1px solid #38d9a9;
@@ -50,7 +51,7 @@ const Text = styled.div`
   flex: 1;
   font-size: 21px;
   color: #495057;
-  ${props =>
+  ${(props) =>
     props.done &&
     css`
       color: #ced4da;
@@ -58,15 +59,26 @@ const Text = styled.div`
 `;
 
 function TodoItem({ id, done, text }) {
+  const todos = useSelector((state) => state.todoReducer);
+  const dispatch = useDispatch();
+  const onToggle = () => {
+    dispatch({ type: "TOGGLE", id });
+  };
+  const onRemove = () => {
+    dispatch({ type: "REMOVE", id });
+  };
+
   return (
     <TodoItemBlock>
-      <CheckCircle done={done}>{done && <MdDone />}</CheckCircle>
+      <CheckCircle done={done} onClick={onToggle}>
+        {done && <MdDone />}
+      </CheckCircle>
       <Text done={done}>{text}</Text>
-      <Remove>
+      <Remove onClick={onRemove}>
         <MdDelete />
       </Remove>
     </TodoItemBlock>
   );
 }
 
-export default TodoItem;
+export default React.memo(TodoItem);
