@@ -1,4 +1,5 @@
 import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import { createGlobalStyle } from "styled-components";
 import TodoTemplate from "./components/TodoTemplate";
@@ -9,6 +10,8 @@ import Calender from "./calender";
 import TodoMenus from "./components/TodoMenus";
 import { FaHome } from "react-icons/fa";
 import { BsFillCalendarCheckFill } from "react-icons/bs";
+import { Button } from "react-bootstrap";
+
 const GlobalStyle = createGlobalStyle`
 body{
   background : #e9ecef;
@@ -20,6 +23,9 @@ body{
 function App() {
   return (
     <>
+      <div className="black-nav">
+        <div className="text-center">오늘 뭐하지 ?</div>
+      </div>
       <GlobalStyle />
       <TodoTemplate>
         <TodoHead />
