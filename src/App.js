@@ -1,16 +1,15 @@
-import React from "react";
+import React, { lazy, Suspense, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import { createGlobalStyle } from "styled-components";
-import TodoTemplate from "./components/TodoTemplate";
-import TodoHead from "./components/TodoHead";
-import TodoList from "./components/TodoList";
-import TodoCreate from "./components/TodoCreate";
-import Calender from "./calender";
-import TodoMenus from "./components/TodoMenus";
-import { FaHome } from "react-icons/fa";
-import { BsFillCalendarCheckFill } from "react-icons/bs";
+
 import { Button } from "react-bootstrap";
+import axios from "axios";
+import { Link, Route, Switch, useHistory } from "react-router-dom";
+
+let TodoToday = lazy(() => {
+  return import("./TodoToday.js");
+});
 
 const GlobalStyle = createGlobalStyle`
 body{
@@ -26,25 +25,22 @@ function App() {
       <div className="black-nav">
         <div className="text-center">오늘 뭐하지 ?</div>
       </div>
-      <GlobalStyle />
-      <TodoTemplate>
-        <TodoHead />
-        <TodoList />
-        <div className="footer_bar">
-          <div className="f_con home">
-            <span className="menus">
-              <FaHome size={35} />
-            </span>
-          </div>
-          <div className="f_con">
-            <span className="menus">
-              <BsFillCalendarCheckFill size={30} />
-            </span>
-          </div>
-        </div>{" "}
-        <TodoCreate />
-      </TodoTemplate>
-      <FaHome />
+
+      <Route path="/home">
+        <Suspense fallback={<div>로딩중입니다.</div>}>
+          <div>집입니다</div>
+        </Suspense>
+      </Route>
+      <Route path="/today">
+        <Suspense fallback={<div>로딩중입니다.</div>}>
+          <TodoToday />
+        </Suspense>
+      </Route>
+      <Route path="/calendar">
+        <Suspense fallback={<div>로딩중입니다.</div>}>
+          <div>캘린더입니다.</div>
+        </Suspense>
+      </Route>
     </>
   );
 }
