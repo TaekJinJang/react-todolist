@@ -1,11 +1,11 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { createGlobalStyle } from "styled-components";
-import TodoTemplate from "./components/TodoTemplate";
-import TodoHead from "./components/TodoHead";
-import TodoList from "./components/TodoList";
-import TodoCreate from "./components/TodoCreate";
-import TodoFooter from "./components/TodoFooter";
+import TodoTemplate from "../../TodoTemplate";
+import TodoHead from "../../TodoHead";
+import TodoList from "../../TodoList";
+import TodoCreate from "../../TodoCreate";
+import TodoFooter from "../../TodoFooter";
 
 const GlobalStyle = createGlobalStyle`
 body{

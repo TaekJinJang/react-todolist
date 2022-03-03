@@ -8,7 +8,13 @@ import axios from "axios";
 import { Link, Route, Switch, useHistory } from "react-router-dom";
 
 let TodoToday = lazy(() => {
-  return import("./TodoToday.js");
+  return import("./components/views/LandingPage/TodoToday.js");
+});
+let RegisterPage = lazy(() => {
+  return import("./components/views/RegisterPage/RegisterPage.js");
+});
+let LoginPage = lazy(() => {
+  return import("./components/views/LoginPage/LoginPage.js");
 });
 
 const GlobalStyle = createGlobalStyle`
@@ -28,22 +34,28 @@ function App() {
           오늘 뭐하지 ?
         </div>
       </div>
-
-      <Route path="/home">
-        <Suspense fallback={<div>로딩중입니다.</div>}>
-          <div>집입니다</div>
-        </Suspense>
-      </Route>
-      <Route path="/today">
-        <Suspense fallback={<div>로딩중입니다.</div>}>
-          <TodoToday />
-        </Suspense>
-      </Route>
-      <Route path="/calendar">
-        <Suspense fallback={<div>로딩중입니다.</div>}>
-          <div>캘린더입니다.</div>
-        </Suspense>
-      </Route>
+      <Switch>
+        <Route path="/home">
+          <Suspense fallback={<div>로딩중입니다.</div>}>
+            <div>집입니다</div>
+          </Suspense>
+        </Route>
+        <Route path="/login">
+          <Suspense fallback={<div>로딩중입니다.</div>}>
+            <LoginPage />
+          </Suspense>
+        </Route>
+        <Route path="/today">
+          <Suspense fallback={<div>로딩중입니다.</div>}>
+            <TodoToday />
+          </Suspense>
+        </Route>
+        <Route path="/calendar">
+          <Suspense fallback={<div>로딩중입니다.</div>}>
+            <div>캘린더입니다.</div>
+          </Suspense>
+        </Route>
+      </Switch>
     </>
   );
 }
