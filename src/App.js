@@ -20,10 +20,13 @@ body{
 `;
 
 function App() {
+  const history = useHistory();
   return (
     <>
       <div className="black-nav">
-        <div className="text-center">오늘 뭐하지 ?</div>
+        <div className="text-center" onClick={() => history.push("/home")}>
+          오늘 뭐하지 ?
+        </div>
       </div>
 
       <Route path="/home">
