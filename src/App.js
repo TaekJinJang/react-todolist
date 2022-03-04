@@ -6,7 +6,7 @@ import { createGlobalStyle } from "styled-components";
 import { Button } from "react-bootstrap";
 import axios from "axios";
 import { Link, Route, Switch, useHistory } from "react-router-dom";
-
+import Calender from "./components/Calender";
 let TodoToday = lazy(() => {
   return import("./components/views/LandingPage/TodoToday.js");
 });
@@ -52,7 +52,7 @@ function App() {
         </Route>
         <Route path="/calendar">
           <Suspense fallback={<div>로딩중입니다.</div>}>
-            <div>캘린더입니다.</div>
+            <Calender />
           </Suspense>
         </Route>
       </Switch>
