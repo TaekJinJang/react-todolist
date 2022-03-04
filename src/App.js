@@ -4,7 +4,7 @@ import "./App.css";
 import { createGlobalStyle } from "styled-components";
 
 import { Button } from "react-bootstrap";
-import axios from "axios";
+
 import { Link, Route, Switch, useHistory } from "react-router-dom";
 import Calender from "./components/Calender";
 let TodoToday = lazy(() => {
