@@ -6,9 +6,10 @@ import { createGlobalStyle } from "styled-components";
 import { Button } from "react-bootstrap";
 
 import { Link, Route, Switch, useHistory } from "react-router-dom";
-import Calender from "./components/Calender";
+import Calender from "./components/views/CalenderPage/Calender";
+import TodoDate from "./components/views/TodoDatePage/TodoDatePage";
 let TodoToday = lazy(() => {
-  return import("./components/views/LandingPage/TodoToday.js");
+  return import("./components/views/LandingPage/TodoTodayPage.js");
 });
 let RegisterPage = lazy(() => {
   return import("./components/views/RegisterPage/RegisterPage.js");
@@ -51,9 +52,10 @@ function App() {
           </Suspense>
         </Route>
         <Route path="/calendar">
-          <Suspense fallback={<div>로딩중입니다.</div>}>
-            <Calender />
-          </Suspense>
+          <Calender />
+        </Route>
+        <Route path="/TodoDate">
+          <TodoDate />
         </Route>
       </Switch>
     </>

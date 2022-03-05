@@ -1,14 +1,20 @@
 import React, { useState, Component } from "react";
 import styled from "styled-components";
-
+import TodoDatePage from "../TodoDatePage/TodoDatePage";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction"; // needed for dayClick
-
+import { withRouter } from "react-router-dom";
 const events = [
   {
     id: 1,
     title: "event 1",
+    start: "2022-03-14",
+    end: "2022-03-14",
+  },
+  {
+    id: 6,
+    title: "event 2",
     start: "2022-03-14",
     end: "2022-03-14",
   },
@@ -36,7 +42,8 @@ class Calendar extends Component {
           plugins={[dayGridPlugin, interactionPlugin]}
           events={events}
           eventColor="green"
-          dateClick={this.handleDateClick}
+          // dateClick={this.handleDateClick}
+          dateClick={this.goToTheater}
         />
       </div>
     );
@@ -45,5 +52,9 @@ class Calendar extends Component {
     // bind with an arrow function
     alert(arg.dateStr);
   };
+  goToTheater = () => {
+    const { history } = this.props;
+    history.push("/TodoDate");
+  };
 }
-export default Calendar;
+export default withRouter(Calendar);
