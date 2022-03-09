@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled, { css } from "styled-components";
 import { MdAdd } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
@@ -77,7 +77,12 @@ const Input = styled.input`
 
 function TodoCreate() {
   const todos = useSelector((state) => state.todoReducer);
-  const nextId = useRef(5);
+
+  function randomIDGenerate() {
+    return "_" + Math.random().toString(36).substr(2, 9);
+  }
+  // const nextId = useRef(Math.max(todos.id));
+
   let dispatch = useDispatch();
 
   const [open, setOpen] = useState(false);
@@ -90,13 +95,14 @@ function TodoCreate() {
     dispatch({
       type: "CREATE",
       todo: {
-        id: nextId.current++,
+        id: randomIDGenerate(),
         title: value,
         done: false,
         date: localStorage.getItem("date"),
       },
     });
   };
+
   console.log(todos);
   return (
     <>

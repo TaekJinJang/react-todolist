@@ -34,7 +34,6 @@ function TodoHead() {
 
   let [DateString, SetDateString] = useState("");
   let [DayName, SetDayName] = useState("");
-  let [UndoneTask, SetUndoneTask] = useState("");
   const today = new Date();
   useEffect(() => {
     let date = localStorage.getItem("date");
@@ -63,15 +62,9 @@ function TodoHead() {
             date.slice(5, 7) - 1,
             date.slice(8)
           ).toLocaleDateString("ko-KR", { weekday: "long" });
-    const undoneTask = todos.map((todo) => {
-      return todo.date == localStorage.getItem("date")
-        ? undoneTasks.length
-        : "0";
-    });
 
     SetDateString(dateString);
     SetDayName(dayName);
-    SetUndoneTask(undoneTask);
     // return () => {
     //   localStorage.removeItem("date");
     // };
