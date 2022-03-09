@@ -91,12 +91,13 @@ function TodoCreate() {
       type: "CREATE",
       todo: {
         id: nextId.current++,
-        text: value,
+        title: value,
         done: false,
+        date: localStorage.getItem("date"),
       },
     });
   };
-
+  console.log(todos);
   return (
     <>
       {open && (

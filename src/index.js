@@ -10,22 +10,23 @@ import { combineReducers, createStore } from "redux";
 const initialTodos = [
   {
     id: 1,
-    text: "프로젝트 생성하기",
+    title: "프로젝트 생성하기",
+    date: "2022-03-06",
     done: true,
   },
   {
     id: 2,
-    text: "컴포넌트 스타일링하기",
+    title: "컴포넌트 스타일링하기",
     done: true,
   },
   {
     id: 3,
-    text: "Context 만들기",
+    title: "Context 만들기",
     done: false,
   },
   {
     id: 4,
-    text: "기능 구현하기",
+    title: "기능 구현하기",
     done: false,
   },
 ];

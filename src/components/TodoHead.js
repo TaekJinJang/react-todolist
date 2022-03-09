@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { BsCalendarCheck } from "react-icons/bs";
@@ -31,19 +31,56 @@ function TodoHead() {
   let dispatch = useDispatch();
   const todos = useSelector((state) => state.todoReducer);
   const undoneTasks = todos.filter((todo) => !todo.done);
-  console.log(todos);
 
+  let [DateString, SetDateString] = useState("");
+  let [DayName, SetDayName] = useState("");
+  let [UndoneTask, SetUndoneTask] = useState("");
   const today = new Date();
-  const dateString = today.toLocaleDateString("ko-KR", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-  const dayName = today.toLocaleDateString("ko-KR", { weekday: "long" });
+  useEffect(() => {
+    let date = localStorage.getItem("date");
+    const dateString =
+      date == null
+        ? today.toLocaleDateString("ko-KR", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })
+        : new Date(
+            date.slice(0, 4),
+            date.slice(5, 7) - 1,
+            date.slice(8)
+          ).toLocaleDateString("ko-KR", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          });
+
+    const dayName =
+      date == null
+        ? today.toLocaleDateString("ko-KR", { weekday: "long" })
+        : new Date(
+            date.slice(0, 4),
+            date.slice(5, 7) - 1,
+            date.slice(8)
+          ).toLocaleDateString("ko-KR", { weekday: "long" });
+    const undoneTask = todos.map((todo) => {
+      return todo.date == localStorage.getItem("date")
+        ? undoneTasks.length
+        : "0";
+    });
+
+    SetDateString(dateString);
+    SetDayName(dayName);
+    SetUndoneTask(undoneTask);
+    // return () => {
+    //   localStorage.removeItem("date");
+    // };
+  }, []);
+
   return (
     <TodoHeadBlock>
-      <h1>{dateString}</h1>
-      <div className="day">{dayName}</div>
+      <h1>{DateString}</h1>
+      <div className="day">{DayName}</div>
       <div className="tasks-left">할 일 {undoneTasks.length}개 남음</div>
     </TodoHeadBlock>
   );

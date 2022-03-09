@@ -5,6 +5,7 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction"; // needed for dayClick
 import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 const events = [
   {
     id: 1,
@@ -28,19 +29,22 @@ const events = [
   { title: "event 1", date: "2022-03-06" },
 ];
 
+// const todos = useSelector((state) => state.todoReducer);
 class Calendar extends Component {
   render() {
     return (
       <div className="container mt-4 mb-4">
         <FullCalendar
           initialView="dayGridMonth"
+          //locale="ko"
+
           headerToolbar={{
             start: "today",
             center: "title",
             end: "prev,next",
           }}
           plugins={[dayGridPlugin, interactionPlugin]}
-          events={events}
+          events={this.props.date}
           eventColor="green"
           // dateClick={this.handleDateClick}
           dateClick={this.goToTheater}
@@ -50,11 +54,15 @@ class Calendar extends Component {
   }
   handleDateClick = (arg) => {
     // bind with an arrow function
-    alert(arg.dateStr);
   };
-  goToTheater = () => {
-    const { history } = this.props;
-    history.push("/TodoDate");
+  goToTheater = (arg) => {
+    this.props.history.push("/TodoDate");
+    localStorage.setItem("date", arg.dateStr);
+    console.log(localStorage.getItem("date"));
   };
 }
-export default withRouter(Calendar);
+const store = (state) => ({
+  date: state.todoReducer,
+});
+
+export default connect(store)(withRouter(Calendar));

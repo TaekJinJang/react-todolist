@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import TodoItem from "./TodoItem";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,18 +14,22 @@ const TodoListBlock = styled.div`
 function TodoList() {
   const todos = useSelector((state) => state.todoReducer);
   let dispatch = useDispatch();
-
+  let [Date, SetDate] = useState("");
+  useEffect(() => {
+    let date = localStorage.getItem("date");
+    SetDate(date);
+  });
   return (
     <TodoListBlock>
       {todos.map((todo) => {
-        return (
+        return todo.date == Date ? (
           <TodoItem
             key={todo.id}
             id={todo.id}
-            text={todo.text}
+            title={todo.title}
             done={todo.done}
           />
-        );
+        ) : null;
       })}
     </TodoListBlock>
   );

@@ -2,7 +2,7 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { createGlobalStyle } from "styled-components";
 import TodoTemplate from "../../TodoTemplate";
-import TodoHeadDate from "../../TodoHeadDate";
+import TodoHead from "../../TodoHead";
 import TodoList from "../../TodoList";
 import TodoCreate from "../../TodoCreate";
 import TodoFooter from "../../TodoFooter";
@@ -20,7 +20,7 @@ function TodoToday() {
     <>
       <GlobalStyle />
       <TodoTemplate>
-        <TodoHeadDate />
+        <TodoHead />
         <TodoList />
         <TodoFooter />
         <TodoCreate />

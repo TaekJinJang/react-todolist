@@ -58,7 +58,7 @@ const Text = styled.div`
     `}
 `;
 
-function TodoItem({ id, done, text }) {
+function TodoItem({ id, done, title }) {
   const todos = useSelector((state) => state.todoReducer);
   const dispatch = useDispatch();
   const onToggle = () => {
@@ -73,7 +73,7 @@ function TodoItem({ id, done, text }) {
       <CheckCircle done={done} onClick={onToggle}>
         {done && <MdDone />}
       </CheckCircle>
-      <Text done={done}>{text}</Text>
+      <Text done={done}>{title}</Text>
       <Remove onClick={onRemove}>
         <MdDelete />
       </Remove>

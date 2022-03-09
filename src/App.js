@@ -36,25 +36,25 @@ function App() {
         </div>
       </div>
       <Switch>
-        <Route path="/home">
+        <Route exact path="/home">
           <Suspense fallback={<div>로딩중입니다.</div>}>
             <div>집입니다</div>
           </Suspense>
         </Route>
-        <Route path="/login">
+        <Route exact path="/login">
           <Suspense fallback={<div>로딩중입니다.</div>}>
             <LoginPage />
           </Suspense>
         </Route>
-        <Route path="/today">
+        <Route exact path="/">
           <Suspense fallback={<div>로딩중입니다.</div>}>
             <TodoToday />
           </Suspense>
         </Route>
-        <Route path="/calendar">
+        <Route exact path="/calendar">
           <Calender />
         </Route>
-        <Route path="/TodoDate">
+        <Route exact path="/TodoDate">
           <TodoDate />
         </Route>
       </Switch>
