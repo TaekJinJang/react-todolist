@@ -103,7 +103,6 @@ function TodoCreate() {
     });
   };
 
-  console.log(todos);
   return (
     <>
       {open && (

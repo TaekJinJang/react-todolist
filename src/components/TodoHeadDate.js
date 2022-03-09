@@ -31,19 +31,27 @@ function TodoHead() {
   let dispatch = useDispatch();
   const todos = useSelector((state) => state.todoReducer);
   const undoneTasks = todos.filter((todo) => !todo.done);
-  console.log(todos);
+
   let [DateString, SetDateString] = useState("");
   let [DayName, SetDayName] = useState("");
   const today = new Date();
   useEffect(() => {
     let date = localStorage.getItem("date");
-    const dateString = today.toLocaleDateString("ko-KR", {
+    const dateString = new Date(
+      date.slice(0, 4),
+      date.slice(5, 7) - 1,
+      date.slice(8)
+    ).toLocaleDateString("ko-KR", {
       year: "numeric",
       month: "long",
       day: "numeric",
     });
 
-    const dayName = today.toLocaleDateString("ko-KR", { weekday: "long" });
+    const dayName = new Date(
+      date.slice(0, 4),
+      date.slice(5, 7) - 1,
+      date.slice(8)
+    ).toLocaleDateString("ko-KR", { weekday: "long" });
 
     SetDateString(dateString);
     SetDayName(dayName);
