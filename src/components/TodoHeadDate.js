@@ -30,10 +30,9 @@ const TodoHeadBlock = styled.div`
 function TodoHead() {
   let dispatch = useDispatch();
   const todos = useSelector((state) => state.todoReducer);
-  const undoneTasks = todos.filter((todo) => !todo.done);
-
   let [DateString, SetDateString] = useState("");
   let [DayName, SetDayName] = useState("");
+  let [undoneTasks, setUndoneTasks] = useState("");
   const today = new Date();
   useEffect(() => {
     let date = localStorage.getItem("date");
@@ -59,7 +58,12 @@ function TodoHead() {
     //   localStorage.removeItem("date");
     // };
   }, []);
-
+  useEffect(() => {
+    const undoneTask = todos.filter(
+      (todo) => todo.date == localStorage.getItem("date") && !todo.done
+    );
+    setUndoneTasks(undoneTask);
+  }, [todos]);
   return (
     <TodoHeadBlock>
       <h1>{DateString}</h1>

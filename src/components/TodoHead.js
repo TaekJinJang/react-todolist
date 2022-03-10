@@ -30,11 +30,13 @@ const TodoHeadBlock = styled.div`
 function TodoHead() {
   let dispatch = useDispatch();
   const todos = useSelector((state) => state.todoReducer);
-  const undoneTasks = todos.filter((todo) => !todo.done);
+
   console.log(todos);
   let [DateString, SetDateString] = useState("");
   let [DayName, SetDayName] = useState("");
+  let [undoneTasks, setUndoneTasks] = useState("");
   const today = new Date();
+
   useEffect(() => {
     let date = localStorage.getItem("date");
     const dateString = today.toLocaleDateString("ko-KR", {
@@ -51,12 +53,19 @@ function TodoHead() {
     //   localStorage.removeItem("date");
     // };
   }, []);
-
+  // useEffect(() => {
+  //   let date = DateString.replace(/[^0-9]/g, "");
+  //   const undoneTask = todos.filter(
+  //     (todo) => todo.date == DateString && !todo.done
+  //   );
+  //   console.log(date);
+  //   setUndoneTasks(undoneTask);
+  // }, [todos]);
   return (
     <TodoHeadBlock>
       <h1>{DateString}</h1>
       <div className="day">{DayName}</div>
-      <div className="tasks-left">할 일 {undoneTasks.length}개 남음</div>
+      {/* <div className="tasks-left">할 일 {undoneTasks}개 남음</div> */}
     </TodoHeadBlock>
   );
 }

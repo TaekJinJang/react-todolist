@@ -11,7 +11,7 @@ const initialTodos = [
   {
     id: 1,
     title: "프로젝트 생성하기",
-    date: "2022-03-09",
+    date: "2022-03-10",
     done: true,
   },
   {
