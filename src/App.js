@@ -8,6 +8,7 @@ import { Button } from "react-bootstrap";
 import { Link, Route, Switch, useHistory } from "react-router-dom";
 import Calender from "./components/views/CalenderPage/Calender";
 import TodoDate from "./components/views/TodoDatePage/TodoDatePage";
+import MainPage from "./components/views/MainPage/MainPage";
 let TodoToday = lazy(() => {
   return import("./components/views/LandingPage/TodoTodayPage.js");
 });
@@ -38,7 +39,7 @@ function App() {
       <Switch>
         <Route exact path="/home">
           <Suspense fallback={<div>로딩중입니다.</div>}>
-            <div>집입니다</div>
+            <MainPage />
           </Suspense>
         </Route>
         <Route exact path="/login">
