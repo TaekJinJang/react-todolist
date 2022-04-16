@@ -5,6 +5,8 @@ import TodoTemplate from "../../TodoTemplate";
 import TodoCreate from "../../TodoCreate";
 import TodoFooter from "../../TodoFooter";
 import "./MainPage.css";
+import { Button } from "react-bootstrap";
+import Calender from "../../img/Calender.jpg";
 
 const GlobalStyle = createGlobalStyle`
 body{
@@ -42,10 +44,19 @@ function MainPage() {
     <>
       <GlobalStyle />
       <TodoTemplate>
+        <h1 className="Login">Login</h1>
+        <img src={Calender} className="Login-img mx-5"></img>
+        {/* <div>이메일 로그인 시스템입니다.</div> */}
         <div className="main">
-          <h1>메인페이지입니다</h1>
-          잔디
+          <form>
+            <label className="m-5"> Email </label>
+            <input type="email" />
+            <br />
+            <Button variant="outline-primary m-5">로그인</Button>{" "}
+            <Button variant="outline-success ">회원가입</Button>{" "}
+          </form>
         </div>
+
         <TodoFooter />
         <TodoCreate />
       </TodoTemplate>
