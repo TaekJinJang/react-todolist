@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { createGlobalStyle } from "styled-components";
 import styled from "styled-components";
 import TodoTemplate from "../../TodoTemplate";
@@ -7,6 +7,7 @@ import TodoFooter from "../../TodoFooter";
 import "./MainPage.css";
 import { Button } from "react-bootstrap";
 import Calender from "../../img/Calender.jpg";
+import { Link, Route, Switch, useHistory } from "react-router-dom";
 
 const GlobalStyle = createGlobalStyle`
 body{
@@ -40,7 +41,8 @@ const Main = styled.div`
 `;
 
 function MainPage() {
-  let ID;
+  let [ID, setID] = useState("");
+  const history = useHistory();
   return (
     <>
       <GlobalStyle />
@@ -51,13 +53,20 @@ function MainPage() {
         <div className="main">
           <form>
             <label className="m-5"> Email </label>
-            <input type="email" />
+            <input
+              type="email"
+              onChange={(e) => {
+                setID(e.target.value);
+              }}
+            />
             <br />
             <Button
               variant="outline-primary m-5"
               onClick={() => {
                 if (ID == "xorwls1500@naver.com") {
-                  history.push("/");
+                  history.push("/calendar");
+                } else {
+                  alert("이메일을 정확히 입력해주세요.");
                 }
               }}
             >
