@@ -40,6 +40,7 @@ const Main = styled.div`
 `;
 
 function MainPage() {
+  let ID;
   return (
     <>
       <GlobalStyle />
@@ -52,7 +53,16 @@ function MainPage() {
             <label className="m-5"> Email </label>
             <input type="email" />
             <br />
-            <Button variant="outline-primary m-5">로그인</Button>{" "}
+            <Button
+              variant="outline-primary m-5"
+              onClick={() => {
+                if (ID == "xorwls1500@naver.com") {
+                  history.push("/");
+                }
+              }}
+            >
+              로그인
+            </Button>{" "}
             <Button variant="outline-success ">회원가입</Button>{" "}
           </form>
         </div>
